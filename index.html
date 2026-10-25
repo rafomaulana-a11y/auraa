@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aura ♡</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(
+        145deg, #190b20, #48152f, #200d28
+    );
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 16px;
+}
+
+.card {
+    width: 100%;
+    max-width: 390px;
+    padding: 30px 22px;
+    text-align: center;
+    border: 1px solid #ff9ccc55;
+    border-radius: 25px;
+    background: #ffffff0b;
+    box-shadow: 0 0 40px #ff4f9a20;
+    backdrop-filter: blur(8px);
+    position: relative;
+    z-index: 2;
+}
+
+.small {
+    color: #ffb4d7;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+h1 {
+    font-size: 39px;
+    margin: 15px 0;
+    letter-spacing: 5px;
+    color: #ffc4df;
+    text-shadow: 0 0 20px #ff4d9d;
+}
+
+.heart {
+    font-size: 76px;
+    display: inline-block;
+    color: #ff5c9d;
+    animation: beat 1s infinite;
+    filter: drop-shadow(0 0 16px #ff398b);
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.message {
+    color: #ffe7f1;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 30px;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff6fae, #ff9acb);
+    color: #45112e;
+    transition: transform .2s;
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+.secondary {
+    color: #ffe1ef;
+    background: #ffffff12;
+    border: 1px solid #ff9ccc66;
+}
+
+#secret {
+    display: none;
+    color: #ffd3e7;
+    line-height: 1.8;
+    margin-top: 22px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #ff80b511;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    color: #ff91c4;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.footer {
+    margin-top: 22px;
+    color: #dba7c3;
+    font-size: 11px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <main class="card">
+
+        <div class="small">A LITTLE GIFT FOR YOU</div>
+
+        <div class="heart">♥</div>
+
+        <h1>AURA</h1>
+
+        <p class="message">
+            Hai, Aura ini gua yang buat lohh.
+        </p>
+
+        <button onclick="openMessage()">
+            Buka pesan rahasia 💌
+        </button>
+
+        <div id="secret">
+            <h3>for aura♡</h3>
+            semoga hari hari lu selalu dipenuhi sama
+            hal-hal baik yaa, dan semogaa lu bisa bahagia terus setiap hari nya,
+            dan jangann lupa buat jaga kesehatan
+
+            <br><br>
+
+            jangann lupa jugaa buat inget kalau ada apa apa, gua selalu ada buat lu. eiyaa inget juga kalau gua disini tetep suka sama lu. 💗
+
+            <br><br>
+            <span>with love, ♡</span>
+        </div>
+
+        <button class="secondary" onclick="makeHearts()">
+            Kirim banyak hati 💕
+        </button>
+
+        <div class="footer">
+            MADE WITH ♡ JUST FOR AURA
+        </div>
+
+    </main>
+</div>
+
+<script>
+function openMessage() {
+    const secret = document.getElementById("secret");
+
+    if (secret.style.display === "block") {
+        secret.style.display = "none";
+    } else {
+        secret.style.display = "block";
+        makeHearts();
+    }
+}
+
+function makeHearts() {
+    for (let i = 0; i < 18; i++) {
+        setTimeout(() => {
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+            heart.textContent = ["♥", "♡", "💕", "💗"][
+                Math.floor(Math.random() * 4)
+            ];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize =
+                (16 + Math.random() * 22) + "px";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7500);
+        }, i * 100);
+    }
+}
+
+// Hati kecil muncul secara berkala
+setInterval(() => {
+    const heart = document.createElement("div");
+
+    heart.className = "floating-heart";
+    heart.textContent = "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = "18px";
+    heart.style.animationDuration = "6s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 900);
+</script>
+
+</body>
+</html>
